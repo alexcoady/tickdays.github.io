@@ -1,74 +1,24 @@
 /** @jsx jsx */
 import styled from "@emotion/styled"
 import { jsx, css } from "@emotion/react"
-import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-import AppStoreImage from "../svgs/app-store-dark.inline.svg"
 import { mediaQuery } from "../style/mediaQueries"
+import { StaticImage } from "gatsby-plugin-image"
+import { Wrapper } from "../components/Wrapper"
+import { AppLinks } from "../components/AppLinks"
 
-const Container = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-
-  ${mediaQuery.desktop} {
-    flex-direction: row;
-  }
-`
-
-const Column = styled.div`
-  margin-bottom: 20px;
-  min-height: 50vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex: 1 0;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-`
-
-const Links = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-const IndexPage = () => {
-  const data = useStaticQuery(graphql`
-    query AppStoreLinks {
-      site {
-        siteMetadata {
-          appStoreUrl
-          playStoreUrl
-        }
-      }
-      googlePlayImage: file(relativePath: { eq: "google-play-badge.png" }) {
-        childImageSharp {
-          fixed(height: 60) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-      todayImage: file(relativePath: { eq: "today.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `)
-
-  return (
-    <Layout>
-      <SEO title="Home" />
+export default () => (
+  <Layout>
+    <SEO title="Home" />
+    <Wrapper
+      css={css`
+        display: flex;
+        flex-grow: 1;
+      `}
+    >
       <Container>
         <Column
           css={css`
@@ -78,35 +28,37 @@ const IndexPage = () => {
         >
           <h1>Track your good days with Tickdays</h1>
           <p>
-            Tickdays is a free app for tracking your good days, and for doing
-            more of the things you want to
+            Tickdays is the app for tracking your good days and building strong
+            habits
           </p>
 
-          <Links>
-            <a target="_blank" href={data.site.siteMetadata.appStoreUrl}>
-              <AppStoreImage />
-            </a>
-            <a target="_blank" href={data.site.siteMetadata.playStoreUrl}>
-              <Img
-                fadeIn={false}
-                fixed={data.googlePlayImage.childImageSharp.fixed}
-              />
-            </a>
-          </Links>
+          <AppLinks />
         </Column>
         <Column>
-          <div
-            css={css`
-              width: 300px;
-              margin: 0 auto;
-            `}
-          >
-            <Img fluid={data.todayImage.childImageSharp.fluid} />
-          </div>
+          <StaticImage
+            src="../images/insights.png"
+            alt="Tickdays Today screen"
+            width={400}
+            placeholder="none"
+          />
         </Column>
       </Container>
-    </Layout>
-  )
-}
+    </Wrapper>
+  </Layout>
+)
 
-export default IndexPage
+const Container = styled.div`
+  padding: 1rem 0;
+  ${mediaQuery.desktop} {
+    display: flex;
+  }
+`
+
+const Column = styled.div`
+  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex: 1 0;
+`

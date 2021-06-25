@@ -2,3 +2,9 @@
   font-family: "Manrope";
   src: url("../fonts/Manrope.ttf");
 }
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-SemiBold.ttf");
+  font-weight: 600;
+}

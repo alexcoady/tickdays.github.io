@@ -1,5 +1,15 @@
 {
   "compilerOptions": {
-    "types": ["@emotion/core"]
-  }
+    "types": ["@emotion/core"],
+    "module": "commonjs",
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": false
+  },
+  "include": ["./globals.ts"]
 }

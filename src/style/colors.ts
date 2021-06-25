@@ -1,0 +1,8 @@
+export const blue = "rgb(80, 139, 189)"
+export const oat = "rgb(246,242,237)"
+export const oatLight = "rgb(246,241,235)"
+export const oatDark = "rgb(37,37,37)"
+export const oatMedium = "rgb(179,174,168)"
+export const white = "#FFFEFD"
+export const black = "#000"
+export const darkGrey = "#15141C"
